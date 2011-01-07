@@ -1,0 +1,16 @@
+# CakePHP Thumbs Plugin
+
+CakePHP Thumbs Plugin provides an easy way to generate and distribute thumbnails using PhpThumb.
+
+## Dependencies
+
+* PhpThumb
+* http://phpthumb.sourceforge.net/
+
+## Installation
+
+* Clone/Copy the files in this directory into `app/plugins/thumbs`
+
+## Documentation
+
+Coming soon
