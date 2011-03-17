@@ -3,6 +3,12 @@
 App::import('Debugger'); 
 App::import('Lib', 'Thumbs.Functions');
 
+/**
+ * undocumented class
+ *
+ * @package thumbs
+ * @author Rui Cruz
+ */
 class ThumbComponent {
 
 	/**
@@ -57,7 +63,7 @@ class ThumbComponent {
 
 		// verify that the filesystem is writable, if not add an error to the object
 		// dont fail if not and let phpThumb try anyway
-		if (!is_writable($storage_folder)) {
+		if (($storage_folder != 'OUTPUT') && !is_writable($storage_folder)) {
 			
 			if (!mkdir($storage_folder, 0777, true)) {
 				
@@ -69,7 +75,10 @@ class ThumbComponent {
 		}
 
 		// Load phpThumb
-		App::import('Vendor', 'phpThumb', array('file' => 'phpThumb/phpthumb.class.php'));
+		if (!App::import('Vendor', 'Thumbs.phpThumb', array('file' => 'phpThumb/phpthumb.class.php'))) {
+			new exception('Unable to load phpThumb from Vendors');
+			return false;
+		}
 		$phpThumb = new phpThumb();
 
 		$phpThumb->setSourceFilename($baseDir . $filename);
@@ -80,7 +89,11 @@ class ThumbComponent {
 
 		if ($phpThumb->generateThumbnail()) {
 			
-			if (!$phpThumb->RenderToFile($storage_folder . DS . $filename . '-' . $height . 'x' . $width . getFileExtension($filename))) {
+			if ($storage_folder = 'OUTPUT') {
+				
+				$phpThumb->OutputThumbnail();
+				
+			} elseif (!$phpThumb->RenderToFile($storage_folder . DS . $filename . '-' . $height . 'x' . $width . getFileExtension($filename))) {
 				
 				Debugger::log('Could not render to file');
 				return false;
