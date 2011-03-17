@@ -46,6 +46,12 @@ class ThumbHelper extends AppHelper {
 		
 	}
 	
+	public function thumbnail($filename, $root_folder, $options = null) {
+		
+		return $this->Html->image(array('plugin' => 'thumbs', 'controller' => 'thumbs', 'action' => 'view', $root_folder, $filename));
+		
+	}
+	
 }
 
 ?>
