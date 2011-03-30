@@ -27,3 +27,5 @@ vendors/phpThumb/phpthumb.functions.php
 vendors/phpThumb/phpthumb.gif.php
 vendors/phpThumb/phpthumb.ico.php
 vendors/phpThumb/phpthumb.unsharp.php
+.DS_Store
+vendors/.DS_Store
