@@ -91,7 +91,7 @@ class ThumbComponent extends Object {
 		$phpThumb->setParameter('h', $height);
 		$phpThumb->setParameter('zc', 1);
 		
-		if ($phpThumb->generateThumbnail()) {
+		if ($phpThumb->GenerateThumbnail()) {
 			
 			if ($storage_folder == 'OUTPUT') {
 				
@@ -99,14 +99,15 @@ class ThumbComponent extends Object {
 				
 			} elseif (!$phpThumb->RenderToFile($storage_folder . DS . $filename . '-' . $height . 'x' . $width . getFileExtension($filename))) {
 				
-				Debugger::log('Could not render to file');
+				Debugger::log('Could not render to file: ' . $storage_folder . DS . $filename);
 				return false;
 				
 			}
 			
 		} else {
 			
-			Debugger::log('Could not generate thumbnail');
+			$phpThumb->phpThumbDebug();
+			Debugger::log('Could not generate thumbnail:' . $phpThumb->debugmessages);
 			return false;
 			
 		}
