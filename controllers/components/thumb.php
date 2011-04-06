@@ -107,7 +107,7 @@ class ThumbComponent extends Object {
 		} else {
 			
 			$phpThumb->phpThumbDebug();
-			Debugger::log('Could not generate thumbnail:' . $phpThumb->debugmessages);
+			Debugger::log('Could not generate thumbnail: ' . $baseDir . $filename);
 			return false;
 			
 		}

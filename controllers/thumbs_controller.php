@@ -26,7 +26,7 @@ class ThumbsController extends AppController {
 	function thumbnail($folder, $file, $width = 100, $height = 50) {
 	
 		$this->autoRender = false;		
-		$this->Thumb->generateThumb($folder, $file, array('width' => $width, 'height' => $height), 'OUTPUT');
+		$this->Thumb->generateThumb(WWW_ROOT.$folder, $file, array('width' => $width, 'height' => $height), 'OUTPUT');
 		
 	}
 	
