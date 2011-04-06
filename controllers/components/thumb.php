@@ -77,12 +77,13 @@ class ThumbComponent extends Object {
 		}
 
 		// Load phpThumb
-		if (!App::import('Vendor', 'Thumb.phpthumb', array('file' => 'phpthumb/phpthumb.class.php'))) {
+		if (!App::import('Vendor', 'Thumbs.phpthumb', array('file' => 'phpthumb/phpthumb.class.php'))) {
 			throw new exception('Unable to load phpThumb from Vendors');
 			return false;
 		}
 		
 		$phpThumb = new phpThumb();
+
 
 		$phpThumb->setSourceFilename($baseDir . $filename);
 				
@@ -90,6 +91,7 @@ class ThumbComponent extends Object {
 		$phpThumb->setParameter('w', $width);
 		$phpThumb->setParameter('h', $height);
 		$phpThumb->setParameter('zc', 1);
+		$phpThumb->setParameter('config_allow_src_above_docroot', true);
 		
 		if ($phpThumb->GenerateThumbnail()) {
 			
@@ -105,8 +107,7 @@ class ThumbComponent extends Object {
 			}
 			
 		} else {
-			
-			$phpThumb->phpThumbDebug();
+
 			Debugger::log('Could not generate thumbnail: ' . $baseDir . $filename);
 			return false;
 			
