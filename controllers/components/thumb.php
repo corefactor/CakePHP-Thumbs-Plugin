@@ -9,7 +9,7 @@ App::import('Lib', 'Thumbs.Functions');
  * @package thumbs
  * @author Rui Cruz
  */
-class ThumbComponent {
+class ThumbComponent extends Object {
 
 	/**
 	 * The mime types that are allowed for images
